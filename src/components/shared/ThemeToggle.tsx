@@ -4,9 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { Switch } from '../ui/switch';
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState<any>(
-    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light'
-  );
+  // const [theme, setTheme] = useState<any>(
+  //   localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light'
+  // );
+
+  const [theme, setTheme] = useState<any>('light');
 
   const handelToggle = () => {
     if (theme === 'light') {

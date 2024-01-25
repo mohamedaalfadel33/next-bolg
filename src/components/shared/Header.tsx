@@ -12,7 +12,7 @@ import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
   return (
-    <div className="flex flex-between">
+    <div className="flex flex-between mt-4">
       {/* Icons */}
       <div className="md:flex gap-2 hidden">
         <Link href={'/'}>
@@ -33,7 +33,6 @@ const Header = () => {
 
       {/* Mobile */}
       <div className="md:hidden">
-        
         <MobileNav />
       </div>
       {/* pc */}
