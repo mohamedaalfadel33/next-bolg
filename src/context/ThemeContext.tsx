@@ -1,8 +1,20 @@
 'use client';
 
-import { ReactNode, createContext, useEffect, useState } from 'react';
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useEffect,
+  useState,
+} from 'react';
 
-export const ThemeContext = createContext(null);
+type ThemeContext = {
+  theme: string;
+  toggle: Dispatch<SetStateAction<'light' | 'dark'>>;
+};
+
+export const ThemeContext = createContext<ThemeContext | null>(null);
 
 const getFromLocalStorage = () => {
   if (typeof window !== 'undefined') {
@@ -18,7 +30,7 @@ type ThemeContextProviderProps = {
 export const ThemeContextProvider = ({
   children,
 }: ThemeContextProviderProps) => {
-  const [theme, setTheme] = useState(() => {
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     return getFromLocalStorage();
   });
 
