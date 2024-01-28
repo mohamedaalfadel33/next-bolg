@@ -1,25 +1,30 @@
-'use client';
+'use client'; // Ensure this is at the very top of the file
 
 import {
+  createContext,
   Dispatch,
   ReactNode,
   SetStateAction,
-  createContext,
   useEffect,
   useState,
 } from 'react';
 
 type ThemeContext = {
-  theme: string;
+  theme: 'light' | 'dark'; // Specify concrete types for clarity
   toggle: Dispatch<SetStateAction<'light' | 'dark'>>;
 };
 
 export const ThemeContext = createContext<ThemeContext | null>(null);
 
-const getFromLocalStorage = () => {
-  if (typeof window !== 'undefined') {
-    const value = localStorage.getItem('theme');
-    return value || 'light';
+const getFromLocalStorage = (): 'light' | 'dark' => {
+  try {
+    if (typeof window !== 'undefined') {
+      const value = localStorage.getItem('theme');
+      return value === 'light' || value === 'dark' ? value : 'light'; // Validate value
+    }
+  } catch (error) {
+    console.error('Error accessing localStorage:', error); // Handle potential errors
+    return 'light'; // Use default if error occurs
   }
 };
 
@@ -30,16 +35,20 @@ type ThemeContextProviderProps = {
 export const ThemeContextProvider = ({
   children,
 }: ThemeContextProviderProps) => {
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    return getFromLocalStorage();
-  });
+  const [theme, setTheme] = useState<'light' | 'dark'>(() =>
+    getFromLocalStorage()
+  );
 
   const toggle = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light')); // Use functional state update
   };
 
   useEffect(() => {
-    localStorage.setItem('theme', theme);
+    try {
+      localStorage.setItem('theme', theme);
+    } catch (error) {
+      console.error('Error storing theme in localStorage:', error); // Handle potential errors
+    }
   }, [theme]);
 
   return (

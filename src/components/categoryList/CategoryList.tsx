@@ -21,6 +21,71 @@ const CategoryList = () => {
           />
           style
         </Link>
+        <Link
+          href="/blog?cat=style"
+          className={`${styles.category} ${styles.fashion} `}
+        >
+          <Image
+            src={'/fashion.png'}
+            alt="style"
+            width={32}
+            height={32}
+            className={styles.image}
+          />
+          fashion
+        </Link>
+        <Link
+          href="/blog?cat=style"
+          className={`${styles.category} ${styles.fashion} `}
+        >
+          <Image
+            src={'/fashion.png'}
+            alt="style"
+            width={32}
+            height={32}
+            className={styles.image}
+          />
+          fashion
+        </Link>
+        <Link
+          href="/blog?cat=style"
+          className={`${styles.category} ${styles.style} `}
+        >
+          <Image
+            src={'/style.png'}
+            alt="style"
+            width={32}
+            height={32}
+            className={styles.image}
+          />
+          style
+        </Link>{' '}
+        <Link
+          href="/blog?cat=style"
+          className={`${styles.category} ${styles.style} `}
+        >
+          <Image
+            src={'/style.png'}
+            alt="style"
+            width={32}
+            height={32}
+            className={styles.image}
+          />
+          style
+        </Link>{' '}
+        <Link
+          href="/blog?cat=style"
+          className={`${styles.category} ${styles.style} `}
+        >
+          <Image
+            src={'/style.png'}
+            alt="style"
+            width={32}
+            height={32}
+            className={styles.image}
+          />
+          style
+        </Link>
       </div>
     </div>
   );
