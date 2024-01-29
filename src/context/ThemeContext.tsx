@@ -16,17 +16,34 @@ type ThemeContext = {
 
 export const ThemeContext = createContext<ThemeContext | null>(null);
 
-const getFromLocalStorage = (): 'light' | 'dark' => {
-  try {
-    if (typeof window !== 'undefined') {
-      const value = localStorage.getItem('theme');
-      return value === 'light' || value === 'dark' ? value : 'light'; // Validate value
-    }
-  } catch (error) {
-    console.error('Error accessing localStorage:', error); // Handle potential errors
-    return 'light'; // Use default if error occurs
+// type themeType = 'light' | 'dark';
+
+// const getFromLocalStorage = (): themeType => {
+//   try {
+//     if (typeof window !== 'undefined') {
+//       const value = localStorage.getItem('theme');
+//       return value === 'light' || value === 'dark' ? value : 'light';
+//     }
+//   } catch (error) {
+//     console.error('Error accessing localStorage:', error);
+//     return 'light';
+//   }
+// };
+
+type ThemeType = 'dark' | 'light';
+
+function getFromLocalStorage(): ThemeType {
+  if (typeof window !== 'undefined') {
+    const value = localStorage.getItem('theme') as ThemeType;
+
+    if (value === null) return 'light';
+    else if (value === 'light') return 'light';
+    else if (value === 'dark') return 'dark';
+    else return 'light';
+  } else {
+    return 'light';
   }
-};
+}
 
 type ThemeContextProviderProps = {
   children: ReactNode;
